@@ -770,7 +770,7 @@ class _UsageStatsHomeState extends State<UsageStatsHome>
                     ),
                     const SizedBox(height: 16),
                     const Text(
-                      '© 2026 threshold\nLicensed under GPL v3.0',
+                      '© 2026 Threshold\nLicensed under GPL v3.0',
                       style: TextStyle(fontSize: 12),
                     ),
                   ],
