@@ -4,19 +4,19 @@
 
 # Threshold
 
-**Threshold** is a comprehensive screen time management app built with Flutter. Track app usage, set timers, and take control of your digital habits with ease.
+A screen time management app built with Flutter. Track app usage, set timers, and manage your digital habits.
 
 [![Get it on GitHub](https://img.shields.io/badge/Get%20it%20on-GitHub-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/alfahrelrifananda/threshold/releases)
 
 ## Features
 
-- **Real-time Usage Tracking** – Monitor every app with detailed session tracking
-- **App Timers** – Set daily time limits (5-300 minutes) for any app
-- **Home Screen Widgets** – Quick glance at screen time (1x1 and 2x2 sizes)
-- **Beautiful Analytics** – Pie charts, line charts, and hourly breakdowns
-- **Smart Filtering** – Ignore apps you don't want tracked
-- **Privacy-First** – All data stays on your device, no internet required
-- **Anti-Uninstall** – Device Admin protection for committed users
+- Real-time app usage tracking with session details
+- Set daily time limits (5-300 minutes) for apps
+- Home screen widgets (1x1 and 2x2 sizes)
+- Charts and hourly breakdowns
+- Filter out apps you don't want to track
+- All data stays on your device, no internet required
+- Device Admin protection to prevent uninstallation
 
 ## Tech Stack
 
@@ -32,7 +32,7 @@
 ### Prerequisites
 
 - [Flutter SDK](https://flutter.dev/docs/get-started/install) (latest stable version)
-- Android Studio / VS Code with Flutter extensions
+- Android Studio or VS Code with Flutter extensions
 - Android device or emulator (API 24+)
 
 ### Installation
@@ -66,43 +66,33 @@ flutter build apk --release
 flutter build apk --split-per-abi
 ```
 
-The APK will be available in `build/app/outputs/flutter-apk/`
+The APK will be in `build/app/outputs/flutter-apk/`
 
 ## Required Permissions
 
-Threshold requires the following permissions:
+The app requires these permissions:
 
 1. **Usage Access** – Track app usage statistics
 2. **Accessibility Service** – Monitor app activity and enforce timers
 3. **Display Over Other Apps** – Show timer notifications
 4. **Device Administrator** – Prevent unauthorized app removal
 
-All permissions are requested on first launch with clear explanations.
+All permissions are requested on first launch with explanations.
 
 ## Contributing
 
-Contributions are what make the open-source community thrive! Feel free to:
-
+If you'd like to contribute:
 - Fork the project
 - Open issues for bugs or feature requests
-- Submit pull requests with improvements
+- Submit pull requests
 - Follow Flutter/Dart style guidelines
 
 ## License
 
-This project is licensed under the **GNU General Public License v3.0**. See the [LICENSE](LICENSE) file for more details.
+This project is licensed under the **GNU General Public License v3.0**. See the [LICENSE](LICENSE) file for details.
 
 ## Acknowledgments
 
 - Built with [Flutter](https://flutter.dev)
 - Charts by [fl_chart](https://pub.dev/packages/fl_chart)
 - Inspired by Digital Wellbeing
-- Thanks to all contributors!
-
----
-
-<p align="center">
-  <a href="https://github.com/alfahrelrifananda/threshold">Star this repo</a> •
-  <a href="https://github.com/alfahrelrifananda/threshold/issues">Report Bug</a> •
-  <a href="https://github.com/alfahrelrifananda/threshold/issues">Request Feature</a>
-</p>
