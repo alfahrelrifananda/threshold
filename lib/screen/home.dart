@@ -726,7 +726,7 @@ class _UsageStatsHomeState extends State<UsageStatsHome>
                     ),
                     const SizedBox(height: 24),
                     Text(
-                      'threshold',
+                      'Threshold',
                       style: theme.textTheme.headlineSmall?.copyWith(
                         fontWeight: FontWeight.bold,
                       ),
