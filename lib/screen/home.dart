@@ -1085,7 +1085,7 @@ class _UsageStatsHomeState extends State<UsageStatsHome>
                 pinned: true,
                 flexibleSpace: FlexibleSpaceBar(
                   title: Text(
-                    'threshold',
+                    'Threshold',
                     style: theme.textTheme.titleLarge?.copyWith(
                       fontWeight: FontWeight.bold,
                     ),
