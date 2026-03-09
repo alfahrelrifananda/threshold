@@ -99,16 +99,12 @@ class _IgnoredAppsScreenState extends State<IgnoredAppsScreen> {
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(
                                     48,
-                                  ), // Fully rounded
-                                  // border: Border.all(
-                                  //   color: theme.colorScheme.outlineVariant,
-                                  //   width: 1,
-                                  // ),
+                                  ),
                                 ),
                                 child: ClipRRect(
                                   borderRadius: BorderRadius.circular(
                                     48,
-                                  ), // Fully rounded
+                                  ),
                                   child: Image.memory(
                                     Uint8List.fromList(iconBytes),
                                     fit: BoxFit.cover,
@@ -124,7 +120,7 @@ class _IgnoredAppsScreenState extends State<IgnoredAppsScreen> {
                               color: theme.colorScheme.primaryContainer,
                               borderRadius: BorderRadius.circular(
                                 48,
-                              ), // Fully rounded
+                              ),
                             ),
                             child: Icon(
                               Icons.apps,

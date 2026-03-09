@@ -4,7 +4,6 @@ import 'package:threshold/model.dart';
 class UsageStatsHelper {
   static const MethodChannel _channel = MethodChannel('usage_stats');
 
-  // Usage Stats Permission
   static Future<bool> hasPermission() async {
     try {
       final bool result = await _channel.invokeMethod('hasPermission');
@@ -15,14 +14,9 @@ class UsageStatsHelper {
   }
 
   static Future<void> requestPermission() async {
-    try {
-      await _channel.invokeMethod('requestPermission');
-    } catch (e) {
-      // Handle error
-    }
+    await _channel.invokeMethod('requestPermission');
   }
 
-  // Accessibility Permission
   static Future<bool> hasAccessibilityPermission() async {
     try {
       final bool result = await _channel.invokeMethod(
@@ -35,14 +29,9 @@ class UsageStatsHelper {
   }
 
   static Future<void> requestAccessibilityPermission() async {
-    try {
-      await _channel.invokeMethod('requestAccessibilityPermission');
-    } catch (e) {
-      // Handle error
-    }
+    await _channel.invokeMethod('requestAccessibilityPermission');
   }
 
-  // Overlay Permission
   static Future<bool> hasOverlayPermission() async {
     try {
       final bool result = await _channel.invokeMethod('hasOverlayPermission');
@@ -53,14 +42,9 @@ class UsageStatsHelper {
   }
 
   static Future<void> requestOverlayPermission() async {
-    try {
-      await _channel.invokeMethod('requestOverlayPermission');
-    } catch (e) {
-      // Handle error
-    }
+    await _channel.invokeMethod('requestOverlayPermission');
   }
 
-  // Device Admin Permission
   static Future<bool> hasDeviceAdminPermission() async {
     try {
       final bool result = await _channel.invokeMethod(
@@ -73,11 +57,7 @@ class UsageStatsHelper {
   }
 
   static Future<void> requestDeviceAdminPermission() async {
-    try {
-      await _channel.invokeMethod('requestDeviceAdminPermission');
-    } catch (e) {
-      // Handle error
-    }
+    await _channel.invokeMethod('requestDeviceAdminPermission');
   }
 
   static Future<List<AppUsageStat>> getStatsByTimestamps(
@@ -146,7 +126,6 @@ class UsageStatsHelper {
     }
   }
 
-  // App Timer Methods
   static Future<void> setAppTimer(String packageName, int limitMinutes) async {
     try {
       await _channel.invokeMethod('setAppTimer', {

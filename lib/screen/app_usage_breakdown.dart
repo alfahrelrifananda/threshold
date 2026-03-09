@@ -294,7 +294,6 @@ class _AppUsageBreakdownScreenState extends State<AppUsageBreakdownScreen> {
   Widget _buildAppIcon() {
     final theme = Theme.of(context);
 
-    // Show consistent placeholder while loading
     if (_isLoadingAppInfo || _appInfo == null) {
       return Container(
         width: 64,

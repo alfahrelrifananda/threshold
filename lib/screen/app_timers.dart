@@ -156,10 +156,6 @@ class _AppTimersScreenState extends State<AppTimersScreen> {
                                 height: 48,
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(48),
-                                  // border: Border.all(
-                                  //   color: theme.colorScheme.outlineVariant,
-                                  //   width: 1,
-                                  // ),
                                 ),
                                 child: ClipRRect(
                                   borderRadius: BorderRadius.circular(48),

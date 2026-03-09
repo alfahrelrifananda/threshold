@@ -12,29 +12,22 @@ import android.graphics.Canvas
 import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.Drawable
 import android.os.Build
-import android.os.Environment
 import android.provider.Settings
-import android.util.Log
 import androidx.annotation.NonNull
 import io.flutter.embedding.android.FlutterActivity
 import io.flutter.embedding.engine.FlutterEngine
 import io.flutter.plugin.common.MethodChannel
 import java.io.ByteArrayOutputStream
-import java.io.File
-import java.io.FileWriter
-import java.text.SimpleDateFormat
 import java.util.*
 
 class MainActivity: FlutterActivity() {
     private val CHANNEL = "usage_stats"
-    private val TAG = "UsageStatsDebug"
 
     override fun configureFlutterEngine(@NonNull flutterEngine: FlutterEngine) {
         super.configureFlutterEngine(flutterEngine)
         MethodChannel(flutterEngine.dartExecutor.binaryMessenger, CHANNEL).setMethodCallHandler {
             call, result ->
             when (call.method) {
-                // ===== PERMISSION 1: Usage Stats =====
                 "hasPermission" -> {
                     result.success(hasUsageStatsPermission())
                 }
@@ -42,8 +35,6 @@ class MainActivity: FlutterActivity() {
                     openUsageAccessSettings()
                     result.success(null)
                 }
-                
-                // ===== PERMISSION 2: Accessibility Service =====
                 "hasAccessibilityPermission" -> {
                     result.success(isAccessibilityServiceEnabled())
                 }
@@ -51,8 +42,6 @@ class MainActivity: FlutterActivity() {
                     openAccessibilitySettings()
                     result.success(null)
                 }
-                
-                // ===== PERMISSION 3: Display Over Other Apps =====
                 "hasOverlayPermission" -> {
                     result.success(Settings.canDrawOverlays(this))
                 }
@@ -60,8 +49,6 @@ class MainActivity: FlutterActivity() {
                     openOverlaySettings()
                     result.success(null)
                 }
-                
-                // ===== PERMISSION 4: Device Admin =====
                 "hasDeviceAdminPermission" -> {
                     result.success(isDeviceAdminActive())
                 }
@@ -69,8 +56,6 @@ class MainActivity: FlutterActivity() {
                     requestDeviceAdmin()
                     result.success(null)
                 }
-                
-                // ===== Usage Stats Methods =====
                 "getStatsByTimestamps" -> {
                     val start = call.argument<Long>("start") ?: 0
                     val end = call.argument<Long>("end") ?: System.currentTimeMillis()
@@ -124,10 +109,6 @@ class MainActivity: FlutterActivity() {
         }
     }
 
-    // ========================================================================
-    // PERMISSION 1: Usage Stats Permission
-    // ========================================================================
-    
     private fun hasUsageStatsPermission(): Boolean {
         val appOps = getSystemService(Context.APP_OPS_SERVICE) as AppOpsManager
         val mode = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
@@ -150,10 +131,6 @@ class MainActivity: FlutterActivity() {
         startActivity(Intent(Settings.ACTION_USAGE_ACCESS_SETTINGS))
     }
 
-    // ========================================================================
-    // PERMISSION 2: Accessibility Service
-    // ========================================================================
-    
     private fun isAccessibilityServiceEnabled(): Boolean {
         val serviceName = ComponentName(this, AppBlockerAccessibilityService::class.java).flattenToString()
         val enabledServices = Settings.Secure.getString(
@@ -172,10 +149,6 @@ class MainActivity: FlutterActivity() {
         startActivity(Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS))
     }
 
-    // ========================================================================
-    // PERMISSION 3: Display Over Other Apps
-    // ========================================================================
-    
     private fun openOverlaySettings() {
         val intent = Intent(
             Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
@@ -184,10 +157,6 @@ class MainActivity: FlutterActivity() {
         startActivity(intent)
     }
 
-    // ========================================================================
-    // PERMISSION 4: Device Admin
-    // ========================================================================
-    
     private fun isDeviceAdminActive(): Boolean {
         val dpm = getSystemService(Context.DEVICE_POLICY_SERVICE) as DevicePolicyManager
         val componentName = ComponentName(this, AdminReceiver::class.java)
@@ -205,73 +174,65 @@ class MainActivity: FlutterActivity() {
         startActivity(intent)
     }
 
-    // ========================================================================
-    // Usage Stats Methods
-    // ========================================================================
-
     private fun getUsageStats(start: Long, end: Long): List<Map<String, Any>> {
-    try {
-        val usageStatsManager = getSystemService(Context.USAGE_STATS_SERVICE) as UsageStatsManager
-        
-        // Get ignored packages from SharedPreferences
-        val prefs = getSharedPreferences("usage_stats_prefs", Context.MODE_PRIVATE)
-        val ignoredPackages = prefs.getStringSet("ignored_packages", setOf()) ?: setOf()
-        
-        // Auto-ignore the default launcher app
-        val launcherPackage = getDefaultLauncherPackage()
-        
-        val MIN_USAGE_TIME = 180000L // 3 minutes - MUST match widget
-        
-        val stats = usageStatsManager.queryUsageStats(
-            UsageStatsManager.INTERVAL_DAILY,
-            start,
-            end
-        )
+        try {
+            val usageStatsManager = getSystemService(Context.USAGE_STATS_SERVICE) as UsageStatsManager
 
-        if (stats == null || stats.isEmpty()) {
-            return emptyList()
-        }
+            val prefs = getSharedPreferences("usage_stats_prefs", Context.MODE_PRIVATE)
+            val ignoredPackages = prefs.getStringSet("ignored_packages", setOf()) ?: setOf()
 
-        val aggregatedStats = mutableMapOf<String, MutableMap<String, Any>>()
+            val launcherPackage = getDefaultLauncherPackage()
 
-        for (stat in stats) {
-            if (stat.totalTimeInForeground > 0) {
-                val packageName = stat.packageName
-                
-                // Skip ignored packages and launcher
-                if (packageName in ignoredPackages || 
-                    packageName == launcherPackage ||
-                    packageName == "com.alfahrel.threshold") {
-                    continue
-                }
-                
-                if (stat.totalTimeInForeground < MIN_USAGE_TIME) {
-                    continue
-                }
-                
-                if (aggregatedStats.containsKey(packageName)) {
-                    val existing = aggregatedStats[packageName]!!
-                    val totalTime = existing["totalTime"] as Long
-                    existing["totalTime"] = totalTime + stat.totalTimeInForeground
-                } else {
-                    aggregatedStats[packageName] = mutableMapOf(
-                        "packageName" to packageName,
-                        "totalTime" to stat.totalTimeInForeground,
-                        "startTimes" to mutableListOf<Long>()
-                    )
+            val MIN_USAGE_TIME = 180000L
+
+            val stats = usageStatsManager.queryUsageStats(
+                UsageStatsManager.INTERVAL_DAILY,
+                start,
+                end
+            )
+
+            if (stats == null || stats.isEmpty()) {
+                return emptyList()
+            }
+
+            val aggregatedStats = mutableMapOf<String, MutableMap<String, Any>>()
+
+            for (stat in stats) {
+                if (stat.totalTimeInForeground > 0) {
+                    val packageName = stat.packageName
+
+                    if (packageName in ignoredPackages ||
+                        packageName == launcherPackage ||
+                        packageName == "com.alfahrel.threshold") {
+                        continue
+                    }
+
+                    if (stat.totalTimeInForeground < MIN_USAGE_TIME) {
+                        continue
+                    }
+
+                    if (aggregatedStats.containsKey(packageName)) {
+                        val existing = aggregatedStats[packageName]!!
+                        val totalTime = existing["totalTime"] as Long
+                        existing["totalTime"] = totalTime + stat.totalTimeInForeground
+                    } else {
+                        aggregatedStats[packageName] = mutableMapOf(
+                            "packageName" to packageName,
+                            "totalTime" to stat.totalTimeInForeground,
+                            "startTimes" to mutableListOf<Long>()
+                        )
+                    }
                 }
             }
-        }
 
-            // Step 3: Query events for accurate session tracking
             try {
                 val events = usageStatsManager.queryEvents(start, end)
                 val sessionStarts = mutableMapOf<String, MutableList<Long>>()
-                
+
                 while (events.hasNextEvent()) {
                     val event = android.app.usage.UsageEvents.Event()
                     events.getNextEvent(event)
-                    
+
                     if (event.eventType == android.app.usage.UsageEvents.Event.MOVE_TO_FOREGROUND) {
                         if (!sessionStarts.containsKey(event.packageName)) {
                             sessionStarts[event.packageName] = mutableListOf()
@@ -280,20 +241,18 @@ class MainActivity: FlutterActivity() {
                     }
                 }
 
-                // Update start times with event data
                 for ((packageName, starts) in sessionStarts) {
                     if (aggregatedStats.containsKey(packageName)) {
                         aggregatedStats[packageName]!!["startTimes"] = starts
                     }
                 }
             } catch (e: Exception) {
-                Log.e(TAG, "Error querying events: ${e.message}")
+                // ignored
             }
 
             return aggregatedStats.values.toList()
-            
+
         } catch (e: Exception) {
-            Log.e(TAG, "Error getting usage stats: ${e.message}")
             return emptyList()
         }
     }
@@ -305,7 +264,6 @@ class MainActivity: FlutterActivity() {
             val resolveInfo = packageManager.resolveActivity(intent, PackageManager.MATCH_DEFAULT_ONLY)
             resolveInfo?.activityInfo?.packageName
         } catch (e: Exception) {
-            Log.e(TAG, "Error getting launcher package: ${e.message}")
             null
         }
     }
@@ -315,7 +273,7 @@ class MainActivity: FlutterActivity() {
             val usageStatsManager = getSystemService(Context.USAGE_STATS_SERVICE) as UsageStatsManager
             val now = System.currentTimeMillis()
             val thirtyDaysAgo = now - (30L * 24 * 60 * 60 * 1000)
-            
+
             val stats = usageStatsManager.queryUsageStats(
                 UsageStatsManager.INTERVAL_DAILY,
                 thirtyDaysAgo,
@@ -338,7 +296,7 @@ class MainActivity: FlutterActivity() {
     private fun getAppInfo(packageName: String): Map<String, Any>? {
         return try {
             val pm = packageManager
-            
+
             val appInfo = try {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
                     pm.getApplicationInfo(packageName, PackageManager.ApplicationInfoFlags.of(0))
@@ -349,20 +307,20 @@ class MainActivity: FlutterActivity() {
             } catch (e: PackageManager.NameNotFoundException) {
                 return null
             }
-            
+
             val appName = try {
                 pm.getApplicationLabel(appInfo).toString()
             } catch (e: Exception) {
                 packageName.split('.').last()
             }
-            
+
             val iconBytes = try {
                 val icon = pm.getApplicationIcon(packageName)
                 drawableToByteArray(icon)
             } catch (e: Exception) {
                 ByteArray(0)
             }
-            
+
             mapOf(
                 "appName" to appName,
                 "icon" to iconBytes
@@ -375,7 +333,7 @@ class MainActivity: FlutterActivity() {
     private fun drawableToByteArray(drawable: Drawable): ByteArray {
         try {
             val size = 192
-            
+
             val bitmap = if (drawable is BitmapDrawable && drawable.bitmap != null) {
                 val sourceBitmap = drawable.bitmap
                 if (sourceBitmap.width != size || sourceBitmap.height != size) {
@@ -386,16 +344,16 @@ class MainActivity: FlutterActivity() {
             } else {
                 val width = if (drawable.intrinsicWidth > 0) drawable.intrinsicWidth else size
                 val height = if (drawable.intrinsicHeight > 0) drawable.intrinsicHeight else size
-                
+
                 val bitmap = Bitmap.createBitmap(size, size, Bitmap.Config.ARGB_8888)
                 val canvas = Canvas(bitmap)
-                
+
                 val scale = minOf(size.toFloat() / width, size.toFloat() / height)
                 val scaledWidth = (width * scale).toInt()
                 val scaledHeight = (height * scale).toInt()
                 val left = (size - scaledWidth) / 2
                 val top = (size - scaledHeight) / 2
-                
+
                 drawable.setBounds(left, top, left + scaledWidth, top + scaledHeight)
                 drawable.draw(canvas)
                 bitmap
@@ -409,14 +367,9 @@ class MainActivity: FlutterActivity() {
         }
     }
 
-    // ========================================================================
-    // App Timer Methods
-    // ========================================================================
-
     private fun setAppTimer(packageName: String, limitMinutes: Int) {
         val prefs = getSharedPreferences("app_timers", Context.MODE_PRIVATE)
         prefs.edit().putInt(packageName, limitMinutes).apply()
-        Log.d(TAG, "Timer set for $packageName: $limitMinutes minutes")
     }
 
     private fun getAppTimers(): Map<String, Int> {
@@ -429,36 +382,34 @@ class MainActivity: FlutterActivity() {
     private fun removeAppTimer(packageName: String) {
         val prefs = getSharedPreferences("app_timers", Context.MODE_PRIVATE)
         prefs.edit().remove(packageName).apply()
-        Log.d(TAG, "Timer removed for $packageName")
     }
 
     private fun getAppUsageToday(packageName: String): Int? {
         try {
             val usageStatsManager = getSystemService(Context.USAGE_STATS_SERVICE) as UsageStatsManager
-            
+
             val calendar = Calendar.getInstance()
             calendar.set(Calendar.HOUR_OF_DAY, 0)
             calendar.set(Calendar.MINUTE, 0)
             calendar.set(Calendar.SECOND, 0)
             val start = calendar.timeInMillis
             val end = System.currentTimeMillis()
-            
+
             val stats = usageStatsManager.queryUsageStats(
                 UsageStatsManager.INTERVAL_DAILY,
                 start,
                 end
             )
-            
+
             var totalTime = 0L
             for (stat in stats) {
                 if (stat.packageName == packageName) {
                     totalTime += stat.totalTimeInForeground
                 }
             }
-            
+
             return totalTime.toInt()
         } catch (e: Exception) {
-            Log.e(TAG, "Error getting app usage today: ${e.message}")
             return null
         }
     }
