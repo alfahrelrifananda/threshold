@@ -8,8 +8,10 @@ import alfahrel.my.id.threshold.ui.settings.AppTimersActivity
 import alfahrel.my.id.threshold.util.BaseActivity
 import alfahrel.my.id.threshold.ui.sheet.HomeMenuSheet
 import alfahrel.my.id.threshold.ui.settings.IgnoredAppsActivity
+import alfahrel.my.id.threshold.ui.sheet.LanguageSheet
 import alfahrel.my.id.threshold.ui.sheet.PermissionHelpSheet
 import alfahrel.my.id.threshold.ui.sheet.PermissionsStatusSheet
+import alfahrel.my.id.threshold.ui.sheet.ThemeSheet
 import alfahrel.my.id.threshold.R
 import alfahrel.my.id.threshold.data.model.AppUsageStat
 import alfahrel.my.id.threshold.data.repository.UsageRepository
@@ -194,6 +196,8 @@ class MainActivity : BaseActivity() {
             onIgnoredApps = { navigateToIgnoredApps() },
             onAppTimers = { navigateToAppTimers() },
             onCheckPermissions = { showPermissionsStatusSheet() },
+            onLanguage = { showLanguageSheet() },
+            onTheme = { showThemeSheet() },
             onAbout = { showAboutSheet() }
         ).show(supportFragmentManager, "menu_sheet")
     }
@@ -218,6 +222,14 @@ class MainActivity : BaseActivity() {
         PermissionHelpSheet(
             onTryAgain = { openPermissionsFlow() }
         ).show(supportFragmentManager, "permission_help_sheet")
+    }
+
+    private fun showLanguageSheet() {
+        LanguageSheet().show(supportFragmentManager, "language_sheet")
+    }
+
+    private fun showThemeSheet() {
+        ThemeSheet().show(supportFragmentManager, "theme_sheet")
     }
 
     private fun showAboutSheet() {

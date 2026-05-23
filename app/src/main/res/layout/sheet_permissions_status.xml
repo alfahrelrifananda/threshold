@@ -24,7 +24,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Permissions Status"
+            android:text="@string/permissions_status_title"
             android:textAppearance="?attr/textAppearanceTitleLarge"
             android:textStyle="bold" />
 
@@ -53,7 +53,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             android:layout_marginBottom="8dp"
-            android:text="Grant All" />
+            android:text="@string/btn_grant_all" />
 
     </LinearLayout>
 

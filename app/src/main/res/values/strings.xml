@@ -2,4 +2,86 @@
     <string name="app_name">Threshold</string>
     <string name="accessibility_service_description">Monitors app usage to enforce time limits</string>
     <string name="widget_description">Shows your daily app usage stats</string>
+
+    <string name="title_language">Language</string>
+    <string name="language_title">App language</string>
+    <string name="language_desc">The app will restart to apply the selected language</string>
+    <string name="btn_lang_english">English</string>
+    <string name="btn_lang_indonesian">Indonesian</string>
+    <string name="dialog_change_language">Change language</string>
+    <string name="dialog_language_message">The app will restart to apply the new language. Continue?</string>
+
+    <string name="title_theme">Theme</string>
+    <string name="dark_mode_title">Dark mode</string>
+    <string name="dark_mode_desc">Choose when to use dark colours</string>
+    <string name="btn_system">System</string>
+    <string name="btn_light">Light</string>
+    <string name="btn_dark">Dark</string>
+    <string name="dynamic_color_title">Dynamic color</string>
+    <string name="dynamic_color_desc">Match colors to your wallpaper. Falls back to yellow when off.</string>
+    <string name="dialog_enable_dynamic_color">Enable Dynamic Color</string>
+    <string name="dialog_disable_dynamic_color">Disable Dynamic Color</string>
+    <string name="dialog_dynamic_color_message">The app will restart to apply the new color theme. Continue?</string>
+    <string name="btn_restart">Restart</string>
+    <string name="btn_cancel">Cancel</string>
+
+    <string name="menu_ignored_apps">Manage Ignored Apps</string>
+    <string name="menu_app_timers">App Timers</string>
+    <string name="menu_check_permissions">Check Permissions</string>
+    <string name="menu_language">Language</string>
+    <string name="menu_theme">Theme</string>
+    <string name="menu_about">About</string>
+    <string name="menu_cancel">Cancel</string>
+
+    <string name="about_title">About Threshold</string>
+    <string name="about_app_name">Threshold</string>
+    <string name="about_version">Version 1.6.0-beta.1</string>
+    <string name="about_description">A comprehensive screen time management app that helps you understand and control your digital habits.</string>
+    <string name="about_license">© 2026 Threshold · Licensed under GPL v3.0</string>
+
+    <string name="permissions_required_title">Required Permissions</string>
+    <string name="permissions_required_desc">This app requires 4 permissions to function properly:</string>
+    <string name="permissions_on_device">All data stays on your device</string>
+    <string name="btn_reject">Reject</string>
+    <string name="btn_grant_all">Grant All</string>
+
+    <string name="permissions_status_title">Permissions Status</string>
+
+    <string name="app_options_ignore">Ignore App</string>
+
+    <string name="timer_sheet_title">Set Timer</string>
+    <string name="timer_daily_limit">Daily Limit</string>
+    <string name="timer_used_today">Used today</string>
+    <string name="btn_remove_timer">Remove</string>
+    <string name="btn_set_timer">Set Timer</string>
+
+    <string name="permission_help_title">Permission Help</string>
+    <string name="permission_help_how_to">How to enable permissions manually:</string>
+    <string name="permission_help_usage_stats">Usage Stats</string>
+    <string name="permission_help_usage_stats_path">Settings → Apps → Special app access → Usage access → Threshold</string>
+    <string name="permission_help_accessibility">Accessibility Service</string>
+    <string name="permission_help_accessibility_path">Settings → Accessibility → Downloaded apps → Threshold</string>
+    <string name="permission_help_overlay">Display Overlay</string>
+    <string name="permission_help_overlay_path">Settings → Apps → Special app access → Display over other apps → Threshold</string>
+    <string name="permission_help_device_admin">Device Admin</string>
+    <string name="permission_help_device_admin_path">Settings → Security → Device admin apps → Threshold</string>
+    <string name="permission_help_cant_enable">Can\'t enable Accessibility?</string>
+    <string name="permission_help_cant_enable_steps">1. Go to Settings → Apps → Threshold\n2. Tap the menu (⋮) in the top right\n3. Select Allow restricted settings\n4. Authenticate with PIN or biometric\n5. Now try enabling Accessibility again</string>
+    <string name="permission_help_note">Note: Menu paths may vary slightly depending on your Android version and device manufacturer.</string>
+    <string name="btn_try_again">Try Again</string>
+
+    <string name="missing_permissions_title">Missing Permissions</string>
+    <string name="permissions_required_empty_title">Permissions Required</string>
+    <string name="permissions_required_empty_desc">Please grant all required permissions to use this app</string>
+    <string name="btn_grant_permissions">Grant Permissions</string>
+    <string name="btn_help">Help</string>
+
+    <string name="header_last_14_days">Last 14 Days</string>
+    <string name="header_all_time_daily_avg">All-time daily avg</string>
+
+    <string name="empty_day_title">No usage data for this day</string>
+    <string name="empty_day_subtitle">Tap a bar above to switch days</string>
+
+    <string name="app_title">Threshold</string>
+    <string name="select_date">Select date</string>
 </resources>

@@ -38,7 +38,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"
-                android:text="Required Permissions"
+                android:text="@string/permissions_required_title"
                 android:textAppearance="?attr/textAppearanceHeadlineSmall"
                 android:textStyle="bold" />
 
@@ -48,7 +48,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="This app requires 4 permissions to function properly:"
+            android:text="@string/permissions_required_desc"
             android:textAppearance="?attr/textAppearanceBodyMedium" />
 
         <com.google.android.material.card.MaterialCardView
@@ -58,7 +58,6 @@
             app:cardCornerRadius="33dp"
             app:cardBackgroundColor="?attr/colorSurfaceVariant"
             app:cardElevation="0dp"
-            app:strokeColor="?attr/colorOnSurfaceVariant"
             app:strokeWidth="0dp">
 
             <LinearLayout
@@ -78,7 +77,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="12dp"
-                    android:text="All data stays on your device"
+                    android:text="@string/permissions_on_device"
                     android:textAppearance="?attr/textAppearanceBodySmall" />
 
             </LinearLayout>
@@ -98,7 +97,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Reject" />
+                android:text="@string/btn_reject" />
 
             <Button
                 android:id="@+id/btnGrantAll"
@@ -106,7 +105,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:layout_marginStart="12dp"
-                android:text="Grant All" />
+                android:text="@string/btn_grant_all" />
 
         </LinearLayout>
 

@@ -11,6 +11,8 @@ class HomeMenuSheet(
     private val onIgnoredApps: () -> Unit,
     private val onAppTimers: () -> Unit,
     private val onCheckPermissions: () -> Unit,
+    private val onLanguage: () -> Unit,
+    private val onTheme: () -> Unit,
     private val onAbout: () -> Unit
 ) : BottomSheetDialogFragment() {
 
@@ -36,6 +38,16 @@ class HomeMenuSheet(
         view.findViewById<View>(R.id.itemCheckPermissions).setOnClickListener {
             dismiss()
             onCheckPermissions()
+        }
+
+        view.findViewById<View>(R.id.itemLanguage).setOnClickListener {
+            dismiss()
+            onLanguage()
+        }
+
+        view.findViewById<View>(R.id.itemTheme).setOnClickListener {
+            dismiss()
+            onTheme()
         }
 
         view.findViewById<View>(R.id.itemAbout).setOnClickListener {

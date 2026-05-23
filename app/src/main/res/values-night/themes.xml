@@ -64,4 +64,55 @@
         <item name="android:statusBarColor">@color/widget_surface_container_lowest</item>
         <item name="android:navigationBarColor">@color/widget_surface_container_lowest</item>
     </style>
+
+    <style name="ThemeOverlay.Threshold.Default" parent="">
+        <item name="colorPrimary">#A5C0F7</item>
+        <item name="colorOnPrimary">#0A1F50</item>
+        <item name="colorPrimaryContainer">#1A3E8C</item>
+        <item name="colorOnPrimaryContainer">#D5E2FE</item>
+        <item name="colorPrimaryFixed">#D5E2FE</item>
+        <item name="colorPrimaryFixedDim">#A5C0F7</item>
+        <item name="colorOnPrimaryFixed">#001540</item>
+        <item name="colorOnPrimaryFixedVariant">#1A3E8C</item>
+
+        <item name="colorSecondary">#B0C7E2</item>
+        <item name="colorOnSecondary">#1C2F42</item>
+        <item name="colorSecondaryContainer">#374E6A</item>
+        <item name="colorOnSecondaryContainer">#CDE2F8</item>
+        <item name="colorSecondaryFixed">#CDE2F8</item>
+        <item name="colorSecondaryFixedDim">#B0C7E2</item>
+        <item name="colorOnSecondaryFixed">#071526</item>
+        <item name="colorOnSecondaryFixedVariant">#374E6A</item>
+
+        <item name="colorTertiary">#A0CDD9</item>
+        <item name="colorOnTertiary">#003544</item>
+        <item name="colorTertiaryContainer">#234F5E</item>
+        <item name="colorOnTertiaryContainer">#BDEAF7</item>
+        <item name="colorTertiaryFixed">#BDEAF7</item>
+        <item name="colorTertiaryFixedDim">#A0CDD9</item>
+        <item name="colorOnTertiaryFixed">#001F28</item>
+        <item name="colorOnTertiaryFixedVariant">#234F5E</item>
+
+        <item name="colorSurface">#0E1220</item>
+        <item name="colorOnSurface">#DDE3EF</item>
+        <item name="colorSurfaceVariant">#2A3250</item>
+        <item name="colorOnSurfaceVariant">#BEC8DC</item>
+        <item name="colorSurfaceContainerLowest">#090D18</item>
+        <item name="colorSurfaceContainerLow">#151B2E</item>
+        <item name="colorSurfaceContainer">#1A2035</item>
+        <item name="colorSurfaceContainerHigh">#232A3F</item>
+        <item name="colorSurfaceContainerHighest">#2C3347</item>
+        <item name="colorSurfaceDim">#0E1220</item>
+        <item name="colorSurfaceBright">#323A52</item>
+
+        <item name="colorOutline">#8892A8</item>
+        <item name="colorOutlineVariant">#2A3250</item>
+
+        <item name="colorSurfaceInverse">#DDE3EF</item>
+        <item name="colorOnSurfaceInverse">#2C3347</item>
+        <item name="colorPrimaryInverse">#2856A8</item>
+
+        <item name="android:colorBackground">#0E1220</item>
+        <item name="colorOnBackground">#DDE3EF</item>
+    </style>
 </resources>

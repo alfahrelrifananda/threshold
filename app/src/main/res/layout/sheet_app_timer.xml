@@ -26,11 +26,10 @@
             android:id="@+id/tvTimerSheetTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Set Timer"
+            android:text="@string/timer_sheet_title"
             android:textAppearance="?attr/textAppearanceHeadlineSmall"
             android:textStyle="bold" />
 
-        <!-- Current limit + used today card -->
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -70,7 +69,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Daily Limit"
+                        android:text="@string/timer_daily_limit"
                         android:textAppearance="?attr/textAppearanceLabelSmall"
                         android:textColor="?attr/colorOnSurfaceVariant" />
 
@@ -94,7 +93,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Used today"
+                        android:text="@string/timer_used_today"
                         android:textAppearance="?attr/textAppearanceLabelSmall"
                         android:textColor="?attr/colorOnSurfaceVariant" />
 
@@ -112,7 +111,6 @@
 
         </com.google.android.material.card.MaterialCardView>
 
-        <!-- Slider -->
         <com.google.android.material.slider.Slider
             android:id="@+id/sliderTimer"
             android:layout_width="match_parent"
@@ -122,7 +120,6 @@
             android:valueTo="300"
             android:stepSize="5" />
 
-        <!-- Buttons -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -138,14 +135,14 @@
                 android:layout_weight="1"
                 android:layout_marginEnd="6dp"
                 android:visibility="gone"
-                android:text="Remove" />
+                android:text="@string/btn_remove_timer" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnSetTimerConfirm"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
-                android:text="Set Timer" />
+                android:text="@string/btn_set_timer" />
 
         </LinearLayout>
 

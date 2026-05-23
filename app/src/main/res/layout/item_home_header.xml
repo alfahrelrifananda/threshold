@@ -58,7 +58,7 @@
                         android:id="@+id/tvMissingPermissionsTitle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Missing Permissions"
+                        android:text="@string/missing_permissions_title"
                         android:textAppearance="?attr/textAppearanceTitleSmall"
                         android:textColor="?attr/colorOnErrorContainer"
                         android:textStyle="bold" />
@@ -93,7 +93,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Help"
+                    android:text="@string/btn_help"
                     app:icon="@drawable/ic_rounded_help_24" />
 
                 <Button
@@ -102,7 +102,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
                     android:layout_marginStart="10dp"
-                    android:text="Grant Permissions"
+                    android:text="@string/btn_grant_permissions"
                     app:backgroundTint="?attr/colorError" />
 
             </LinearLayout>
@@ -139,7 +139,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Last 14 Days"
+            android:text="@string/header_last_14_days"
             android:textAppearance="?attr/textAppearanceTitleMedium"
             android:textStyle="bold" />
 
@@ -154,7 +154,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="All-time daily avg"
+                android:text="@string/header_all_time_daily_avg"
                 android:textAppearance="?attr/textAppearanceLabelSmall"
                 android:textColor="?attr/colorOnSurfaceVariant" />
 

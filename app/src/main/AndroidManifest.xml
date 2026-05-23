@@ -25,6 +25,7 @@
     </queries>
 
     <application
+        android:name=".util.App"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -52,6 +53,8 @@
 
         <activity android:name=".ui.settings.IgnoredAppsActivity" />
         <activity android:name=".ui.settings.AppTimersActivity" />
+        <activity android:name=".ui.language.LanguageActivity" />
+        <activity android:name=".ui.theme.ThemeActivity" />
 
         <activity
             android:name=".ui.widget.BlockActivity"
